@@ -51,19 +51,17 @@ def find_samp_from_view(samp_db, proj_name):
                         samps[doc.key] = doc.value[1:3]
         return samps
 
-#def find_sample_run_id_from_view(samp_db, sample_run):
-#        view = samp_db.view('names/id_to_name')
-#        for doc in view:
-#                if doc.value == sample_run:
-#        		return doc.key
-#	return None
+def find_flowcell_from_view(flowcell_db, flowcell_name):
+	view = flowcell_db.view('names/id_to_name')
+        for doc in view:
+                if doc.value.split('_')[1] == flowcell_name:
+                        return doc.key
 
 def find_sample_run_id_from_view(samp_db,sample_run):
 	view = samp_db.view('names/id_to_name')
 	for doc in view:
 		K = doc.key
 		V = doc.value
-		print V
 		if V == sample_run:
      			return K
 	return None
